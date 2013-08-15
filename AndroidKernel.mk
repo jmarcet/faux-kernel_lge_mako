@@ -59,7 +59,7 @@ fi
 endef
 
 $(KERNEL_OUT):
-	mkdir -p $(KERNEL_OUT)
+	mkdir -p $(KERNEL_OUT)/drivers/thermal/intelli
 
 $(KERNEL_CONFIG): $(KERNEL_OUT)
 	$(MAKE) -C kernel O=../$(KERNEL_OUT) ARCH=arm CROSS_COMPILE=arm-eabi- $(KERNEL_DEFCONFIG)

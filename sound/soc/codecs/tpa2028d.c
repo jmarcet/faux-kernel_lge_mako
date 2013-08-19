@@ -35,7 +35,6 @@
 #define MODULE_NAME "tpa2028d"
 
 #undef  AMP_DEBUG_PRINT
-#define AMP_DEBUG_PRINT
 
 #define AMP_IOCTL_MAGIC 't'
 #define AMP_SET_DATA	_IOW(AMP_IOCTL_MAGIC, 0, struct amp_cal *)

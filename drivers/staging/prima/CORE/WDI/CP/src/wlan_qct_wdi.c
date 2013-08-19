@@ -730,6 +730,7 @@ WDI_SetPowerStateCb
  @see
  @return Result of the function call
 */
+__attribute__ ((unused))
 static char *WDI_getReqMsgString(wpt_uint16 wdiReqMsgId)
 {
   switch (wdiReqMsgId)
@@ -826,6 +827,7 @@ static char *WDI_getReqMsgString(wpt_uint16 wdiReqMsgId)
  @see
  @return Result of the function call
 */
+__attribute__ ((unused))
 static char *WDI_getRespMsgString(wpt_uint16 wdiRespMsgId)
 {
   switch (wdiRespMsgId)
@@ -919,6 +921,7 @@ static char *WDI_getRespMsgString(wpt_uint16 wdiRespMsgId)
  @see
  @return Result of the function call
 */
+__attribute__ ((unused))
 static char *WDI_getHALStatusMsgString(wpt_uint16 halStatusId)
 {
   switch (halStatusId)

@@ -486,7 +486,7 @@ module_param(debug_data_on, int, 0);
 /*
  * Enables / disables open close debug messages
  */
-static int debug_close_on = 1;
+static int debug_close_on = 0;
 module_param(debug_close_on, int, 0);
 
 /** The driver context */

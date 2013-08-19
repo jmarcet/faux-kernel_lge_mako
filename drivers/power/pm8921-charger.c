@@ -1688,10 +1688,8 @@ static void notify_usb_of_the_plugin_event(int plugin)
 static void __pm8921_charger_vbus_draw(unsigned int mA)
 {
 	int i, rc;
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return;
-	}
 
 	if (mA >= 0 && mA <= 2) {
 		usb_chg_current = 0;
@@ -1785,10 +1783,8 @@ int pm8921_charger_enable(bool enable)
 {
 	int rc;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	enable = !!enable;
 	rc = pm_chg_auto_enable(the_chip, enable);
 	if (rc)
@@ -1801,10 +1797,8 @@ int pm8921_force_start_charging(void)
 {
 	int rc;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (the_chip->eoc_check_soc) {
 		rc = pm_chg_vbatdet_set(the_chip,
@@ -1825,40 +1819,32 @@ EXPORT_SYMBOL(pm8921_force_start_charging);
 
 int pm8921_is_usb_chg_plugged_in(void)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return is_usb_chg_plugged_in(the_chip);
 }
 EXPORT_SYMBOL(pm8921_is_usb_chg_plugged_in);
 
 int pm8921_is_dc_chg_plugged_in(void)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return is_dc_chg_plugged_in(the_chip);
 }
 EXPORT_SYMBOL(pm8921_is_dc_chg_plugged_in);
 
 int pm8921_is_battery_present(void)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return get_prop_batt_present(the_chip);
 }
 EXPORT_SYMBOL(pm8921_is_battery_present);
 
 int pm8921_is_batfet_closed(void)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return is_batfet_closed(the_chip);
 }
 EXPORT_SYMBOL(pm8921_is_batfet_closed);
@@ -1870,10 +1856,8 @@ EXPORT_SYMBOL(pm8921_is_batfet_closed);
  */
 int pm8921_disable_input_current_limit(bool disable)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	if (disable) {
 		pr_warn("Disabling input current limit!\n");
 
@@ -1886,20 +1870,16 @@ EXPORT_SYMBOL(pm8921_disable_input_current_limit);
 
 int pm8917_set_under_voltage_detection_threshold(int mv)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return pm_chg_uvd_threshold_set(the_chip, mv);
 }
 EXPORT_SYMBOL(pm8917_set_under_voltage_detection_threshold);
 
 int pm8921_set_max_battery_charge_current(int ma)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (thermal_mitigation != 0 && the_chip->thermal_mitigation)
 		ma = min((unsigned int)ma,
@@ -1911,10 +1891,8 @@ EXPORT_SYMBOL(pm8921_set_max_battery_charge_current);
 
 int pm8921_disable_source_current(bool disable)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	if (disable)
 		pr_warn("current drawn from chg=0, battery provides current\n");
 
@@ -1928,10 +1906,8 @@ int pm8921_regulate_input_voltage(int voltage)
 {
 	int rc;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	rc = pm_chg_vinmin_set(the_chip, voltage);
 
 	if (rc == 0)
@@ -1946,10 +1922,8 @@ int pm8921_usb_ovp_set_threshold(enum pm8921_usb_ov_threshold ov)
 {
 	u8 temp;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (ov > PM_USB_OV_7V) {
 		pr_err("limiting to over voltage threshold to 7volts\n");
@@ -1969,10 +1943,8 @@ int pm8921_usb_ovp_set_hystersis(enum pm8921_usb_debounce_time ms)
 {
 	u8 temp;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (ms > PM_USB_DEBOUNCE_80P5MS) {
 		pr_err("limiting debounce to 80.5ms\n");
@@ -1991,10 +1963,8 @@ int pm8921_usb_ovp_disable(int disable)
 {
 	u8 temp = 0;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (disable)
 		temp = USB_OVP_DISABLE_MASK;
@@ -2007,10 +1977,8 @@ bool pm8921_is_battery_charging(int *source)
 {
 	int fsm_state, is_charging, dc_present, usb_present;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	fsm_state = pm_chg_get_fsm_state(the_chip);
 	is_charging = is_battery_charging(fsm_state);
 	if (is_charging == 0) {
@@ -2044,10 +2012,8 @@ EXPORT_SYMBOL(pm8921_is_battery_charging);
 
 int pm8921_set_usb_power_supply_type(enum power_supply_type type)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	if (type < POWER_SUPPLY_TYPE_USB)
 		return -EINVAL;
@@ -2061,10 +2027,8 @@ EXPORT_SYMBOL_GPL(pm8921_set_usb_power_supply_type);
 #ifdef CONFIG_WIRELESS_CHARGER
 int set_wireless_power_supply_control(int value)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	wireless_charging = value;
 	power_supply_changed(&the_chip->batt_psy);
@@ -2076,10 +2040,8 @@ EXPORT_SYMBOL(set_wireless_power_supply_control);
 
 int pm8921_set_ext_battery_health(int health, int i_limit)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	the_chip->ext_batt_health = health;
 	the_chip->ext_warm_i_limit = i_limit;
@@ -2096,10 +2058,8 @@ int pm8921_get_batt_state(void)
 	int fsm_state;
 	int i;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	fsm_state = pm_chg_get_fsm_state(the_chip);
 
@@ -2116,10 +2076,8 @@ int pm8921_get_batt_health(void)
 {
 	int batt_health;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	batt_health = get_prop_batt_health(the_chip);
 
@@ -2130,10 +2088,8 @@ EXPORT_SYMBOL(pm8921_get_batt_health);
 
 int pm8921_batt_temperature(void)
 {
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 	return get_prop_batt_temp(the_chip);
 }
 
@@ -3584,10 +3540,8 @@ static int set_therm_mitigation_level(const char *val, struct kernel_param *kp)
 		return ret;
 	}
 
-	if (!chip) {
-		pr_err("called before init\n");
+	if (!chip)
 		return -EINVAL;
-	}
 
 	if (!chip->thermal_mitigation) {
 		pr_err("no thermal mitigation\n");
@@ -4166,10 +4120,8 @@ static int get_reg_loop(void *data, u64 * val)
 {
 	u8 temp;
 
-	if (!the_chip) {
-		pr_err("%s called before init\n", __func__);
+	if (!the_chip)
 		return -EINVAL;
-	}
 	temp = pm_chg_get_regulation_loop(the_chip);
 	*val = temp;
 	return 0;
@@ -4215,10 +4167,8 @@ enum {
 };
 static int get_warm_cool(void *data, u64 * val)
 {
-	if (!the_chip) {
-		pr_err("%s called before init\n", __func__);
+	if (!the_chip)
 		return -EINVAL;
-	}
 	if ((int)data == BAT_WARM_ZONE)
 		*val = the_chip->is_bat_warm;
 	if ((int)data == BAT_COOL_ZONE)
@@ -4344,10 +4294,8 @@ static ssize_t pm8921_chg_status_show(struct device *dev,
 	int fsm_state, is_charging, r;
 	bool b_chg_ok = false;
 
-	if (!the_chip) {
-		pr_err("called before init\n");
+	if (!the_chip)
 		return -EINVAL;
-	}
 
 	fsm_state = pm_chg_get_fsm_state(the_chip);
 	is_charging = is_battery_charging(fsm_state);

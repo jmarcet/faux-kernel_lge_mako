@@ -937,10 +937,8 @@ void mdp4_dtv_set_black_screen(void)
 	struct vsycn_ctrl *vctrl;
 
 	vctrl = &vsync_ctrl_db[cndx];
-	if (vctrl->base_pipe == NULL || !hdmi_prim_display) {
-		pr_err("dtv_pipe is not configured yet\n");
+	if (vctrl->base_pipe == NULL || !hdmi_prim_display)
 		return;
-	}
 	rgb_base = MDP_BASE + MDP4_RGB_BASE;
 	rgb_base += (MDP4_RGB_OFF * vctrl->base_pipe->pipe_num);
 

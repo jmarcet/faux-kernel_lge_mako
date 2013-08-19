@@ -91,6 +91,7 @@ when           who        what, where, why
   *-------------------------------------------------------------------------*/
 /* This is temp, someone have to allocate for me, and must be part of global context */
 static WLANDXE_CtrlBlkType    *tempDxeCtrlBlk                = NULL;
+__attribute__ ((unused))
 static char                   *channelType[WDTS_CHANNEL_MAX] =
    {
       "TX_LOW_PRI",

@@ -355,6 +355,8 @@ static void pm_dev_dbg(struct device *dev, pm_message_t state, char *info)
 static void pm_dev_err(struct device *dev, pm_message_t state, char *info,
 			int error)
 {
+	if (!strcmp(dev_name(dev), "alarm"))
+		return;
 	printk(KERN_ERR "PM: Device %s failed to %s%s: error %d\n",
 		dev_name(dev), pm_verb(state.event), info, error);
 }

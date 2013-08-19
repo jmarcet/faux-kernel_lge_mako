@@ -49,8 +49,6 @@
 #define FSA8008_DEBOUNCE_TIME		500 /* in ms */
 #define FSA8008_WAKELOCK_TIMEOUT	(2*HZ)
 
-#define HSD_DEBUG_PRINT
-
 #ifdef HSD_DEBUG_PRINT
 #define HSD_DBG(fmt, args...) printk(KERN_DEBUG "%s: " fmt, __func__, ##args)
 #else

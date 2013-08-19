@@ -398,7 +398,7 @@ static int mipi_dsi_panel_power(int on)
 		.inv_int_pol = 0,
 		.disable_pin = 0,
 	};
-	printk(KERN_INFO"%s: mipi lcd function started status = %d \n", __func__, on);
+	pr_debug("%s: mipi lcd function started status = %d \n", __func__, on);
 
 	pr_debug("%s: state : %d\n", __func__, on);
 
@@ -502,7 +502,7 @@ static int mipi_dsi_panel_power(int on)
 			return -ENODEV;
 		}
 
-		printk(KERN_INFO " %s : reset start.", __func__);
+		pr_debug(" %s : reset start.", __func__);
 		/* LCD RESET HIGH */
 		mdelay(2);
 		gpio42_param.output_value = 1;

@@ -634,7 +634,7 @@ int msm_rpm_get_status(struct msm_rpm_iv_pair *status, int count)
 
 		target_status_id = target_status(status[i].id);
 		if (target_status_id >= MSM_RPM_STATUS_ID_LAST) {
-			pr_err("%s(): Status id %d not defined for target\n",
+			pr_debug("%s(): Status id %d not defined for target\n",
 					__func__,
 					target_status_id);
 			rc = -EINVAL;

@@ -1891,6 +1891,8 @@ void mdp4_mixer_blend_setup(int mixer)
 	unsigned char *overlay_base;
 	uint32 c0, c1, c2;
 
+  if (!mixer)
+    return;
 
 	d_pipe = ctrl->stage[mixer][MDP4_MIXER_STAGE_BASE];
 	if (d_pipe == NULL) {
@@ -2756,7 +2758,7 @@ void mdp4_overlay_mdp_perf_upd(struct msm_fb_data_type *mfd,
 	if (flag) {
 		if (perf_req->mdp_clk_rate > perf_cur->mdp_clk_rate) {
 			mdp_set_core_clk(perf_req->mdp_clk_rate);
-			pr_info("%s mdp clk is changed [%d] from %d to %d\n",
+			pr_debug("%s mdp clk is changed [%d] from %d to %d\n",
 				__func__,
 				flag,
 				perf_cur->mdp_clk_rate,
@@ -2768,7 +2770,7 @@ void mdp4_overlay_mdp_perf_upd(struct msm_fb_data_type *mfd,
 			mdp_bus_scale_update_request
 				(OVERLAY_BUS_SCALE_TABLE_BASE -
 				 perf_req->mdp_bw);
-			pr_info("%s mdp bw is changed [%d] from %d to %d\n",
+			pr_debug("%s mdp bw is changed [%d] from %d to %d\n",
 				__func__,
 				flag,
 				perf_cur->mdp_bw,
@@ -2793,7 +2795,7 @@ void mdp4_overlay_mdp_perf_upd(struct msm_fb_data_type *mfd,
 		}
 	} else {
 		if (perf_req->mdp_clk_rate < perf_cur->mdp_clk_rate) {
-			pr_info("%s mdp clk is changed [%d] from %d to %d\n",
+			pr_debug("%s mdp clk is changed [%d] from %d to %d\n",
 				__func__,
 				flag,
 				perf_cur->mdp_clk_rate,
@@ -2803,7 +2805,7 @@ void mdp4_overlay_mdp_perf_upd(struct msm_fb_data_type *mfd,
 				perf_req->mdp_clk_rate;
 		}
 		if (perf_req->mdp_bw > perf_cur->mdp_bw) {
-			pr_info("%s mdp bw is changed [%d] from %d to %d\n",
+			pr_debug("%s mdp bw is changed [%d] from %d to %d\n",
 				__func__,
 				flag,
 				perf_cur->mdp_bw,

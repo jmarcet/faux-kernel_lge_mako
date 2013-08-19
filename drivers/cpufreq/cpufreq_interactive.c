@@ -125,18 +125,6 @@ struct cpufreq_governor cpufreq_gov_interactive = {
 	.owner = THIS_MODULE,
 };
 
-#define	AID_SYSTEM	(1000)
-static void dbs_chown(void)
-{
-	int ret;
-
-	ret =
-	sys_chown("/sys/devices/system/cpu/cpufreq/interactive/boostpulse",
-		low2highuid(AID_SYSTEM), low2highgid(0));
-	if (ret)
-		pr_err("sys_chown: boostpulse error: %d", ret);
-}
-
 static void cpufreq_interactive_timer_resched(
 	struct cpufreq_interactive_cpuinfo *pcpu)
 {
@@ -930,8 +918,6 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 			return -EINVAL;
 
 		mutex_lock(&gov_lock);
-
-		dbs_chown();
 
 		freq_table =
 			cpufreq_frequency_get_table(policy->cpu);

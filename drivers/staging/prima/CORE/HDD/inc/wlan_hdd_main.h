@@ -360,9 +360,9 @@ typedef enum device_mode
    WLAN_HDD_P2P_GO,
    WLAN_HDD_MONITOR
 #ifdef ANI_MANF_DIAG
-   ,WLAN_HDD_FTM,
+   ,WLAN_HDD_FTM
 #endif
-   WLAN_HDD_P2P_DEVICE
+   ,WLAN_HDD_P2P_DEVICE
 }device_mode_t;
 
 typedef enum rem_on_channel_request_type

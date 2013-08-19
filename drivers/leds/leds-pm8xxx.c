@@ -905,7 +905,7 @@ static ssize_t pm8xxx_led_lock_update_store(struct device *dev,
 
 			led->lock_update = state;
 			if (!state) {
-				dev_info(dev, "resume %s set %d\n",
+				dev_dbg(dev, "resume %s set %d\n",
 						led->cdev.name, led->cdev.brightness);
 				pm8xxx_update_led(led);
 			}

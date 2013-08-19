@@ -304,6 +304,7 @@ static int con_mode = 0;
 static int curr_con_mode = 0;
 #endif
 
+#ifdef WLAN_DEBUG
 #ifdef FEATURE_WLAN_INTEGRATED_SOC
 /**---------------------------------------------------------------------------
 
@@ -346,6 +347,7 @@ static void hdd_wdi_trace_enable(wpt_moduleid moduleId, v_U32_t bitmask)
    }
 }
 #endif /* FEATURE_WLAN_INTEGRATED_SOC */
+#endif
 
 int hdd_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd)
 {
@@ -3416,6 +3418,7 @@ int hdd_wlan_startup(struct device *dev )
    }
 #endif
 
+#ifdef WLAN_DEBUG
 #ifdef FEATURE_WLAN_INTEGRATED_SOC
    // Update WDI trace levels based upon the cfg.ini
    hdd_wdi_trace_enable(eWLAN_MODULE_DAL,
@@ -3427,6 +3430,7 @@ int hdd_wlan_startup(struct device *dev )
    hdd_wdi_trace_enable(eWLAN_MODULE_PAL,
                         pHddCtx->cfg_ini->wdiTraceEnablePAL);
 #endif /* FEATURE_WLAN_INTEGRATED_SOC */
+#endif
 
 #ifdef ANI_MANF_DIAG 
    if(VOS_FTM_MODE == hdd_get_conparam())

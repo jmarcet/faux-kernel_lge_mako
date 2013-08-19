@@ -88,9 +88,14 @@ if ( ! ( _condition ) )                                   \
 
 #else //WLAN_DEBUG
 
-#define WPAL_TRACE
-#define WPAL_DUMP
-#define WPAL_ASSERT
+#define WPAL_TRACE(...) \
+  do { ; } while(0)
+#define wpalTrace(...) \
+  do { ; } while(0)
+#define WPAL_DUMP(...) \
+  do { ; } while(0)
+#define WPAL_ASSERT(...) \
+  do { ; } while(0)
 
 #endif //WLAN_DEBUG
 

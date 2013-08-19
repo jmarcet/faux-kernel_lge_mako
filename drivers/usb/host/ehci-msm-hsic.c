@@ -1170,7 +1170,7 @@ resume_again:
 			int temp;
 
 			dbg_log_event(NULL, "FPR: Re-Resume", retry_cnt);
-			pr_info("FPR: retry count: %d\n", retry_cnt);
+			pr_debug("FPR: retry count: %d\n", retry_cnt);
 			spin_unlock_irq(&ehci->lock);
 			temp = ehci_readl(ehci, &ehci->regs->port_status[0]);
 			temp &= ~PORT_RWC_BITS;

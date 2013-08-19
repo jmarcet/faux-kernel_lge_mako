@@ -31,7 +31,7 @@ enum {
 	DEBUG_EXPIRE = 1U << 3,
 	DEBUG_WAKE_LOCK = 1U << 4,
 };
-static int debug_mask = DEBUG_EXIT_SUSPEND | DEBUG_WAKEUP;
+static int debug_mask = 0;
 module_param_named(debug_mask, debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP);
 
 #define WAKE_LOCK_TYPE_MASK              (0x0f)
@@ -616,7 +616,11 @@ EXPORT_SYMBOL(wake_lock_active);
 
 static int wakelock_stats_open(struct inode *inode, struct file *file)
 {
+#ifdef CONFIG_WAKELOCK_STAT
 	return single_open(file, wakelock_stats_show, NULL);
+#else
+  return 0;
+#endif
 }
 
 static const struct file_operations wakelock_stats_fops = {

@@ -3736,6 +3736,7 @@ static int iw_setnone_getint(struct net_device *dev, struct iw_request_info *inf
             break;
         }
 
+#ifdef WLAN_DEBUG
 #ifdef FEATURE_WLAN_INTEGRATED_SOC
         case WE_GET_WDI_DBG:
         {
@@ -3744,6 +3745,7 @@ static int iw_setnone_getint(struct net_device *dev, struct iw_request_info *inf
            break;
         }
 #endif // FEATURE_WLAN_INTEGRATED_SOC
+#endif
 
         case WE_GET_SAP_AUTO_CHANNEL_SELECTION:
         {
@@ -3783,7 +3785,7 @@ int iw_set_three_ints_getnone(struct net_device *dev, struct iw_request_info *in
             vos_trace_setValue( value[1], value[2], value[3]);
             break;
         }
-#ifdef FEATURE_WLAN_INTEGRATED_SOC
+#ifdef WLAN_DEBUG
         case WE_SET_WDI_DBG:
         {
             wpalTraceSetLevel( value[1], value[2], value[3]);

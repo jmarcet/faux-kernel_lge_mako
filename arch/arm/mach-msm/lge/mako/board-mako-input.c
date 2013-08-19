@@ -83,17 +83,17 @@ int synaptics_t1320_power_on(int on)
 	rc = regulator_set_voltage(vreg_l15, 3300000, 3300000);
 	rc |= regulator_set_voltage(vreg_l22, 1800000, 1800000);
 	if (rc < 0) {
-		printk(KERN_INFO "[Touch D] %s: cannot control regulator\n",
+		pr_err("[Touch D] %s: cannot control regulator\n",
 		       __func__);
 		return rc;
 	}
 
 	if (on) {
-		printk("[Touch D]touch enable\n");
+		pr_debug("[Touch D]touch enable\n");
 		regulator_enable(vreg_l15);
 		regulator_enable(vreg_l22);
 	} else {
-		printk("[Touch D]touch disable\n");
+		pr_debug("[Touch D]touch disable\n");
 		regulator_disable(vreg_l15);
 		regulator_disable(vreg_l22);
 	}

@@ -385,8 +385,15 @@ when           who        what, where, why
 #endif /* WLANDXE_ENDIAN_SWAP_ENABLE */
 
 /* Log Definition will be mappped with PAL MSG */
+#ifdef WLAN_DEBUG
 #define HDXE_MSG                     WPAL_TRACE
 #define HDXE_ASSERT(a)               VOS_ASSERT(a)
+#else
+#define HDXE_MSG(...) \
+  do { ; } while(0)
+#define HDXE_ASSERT(...) \
+  do { ; } while(0)
+#endif
 
 /*----------------------------------------------------------------------------
  *  Type Declarations

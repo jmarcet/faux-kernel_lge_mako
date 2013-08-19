@@ -133,7 +133,7 @@ static void lm3530_backlight_on(struct i2c_client *client, int level)
 
 	mutex_lock(&backlight_mtx);
 	if (backlight_status == BL_OFF) {
-		pr_info("%s, ++ lm3530_backlight_on  \n",__func__);
+		//pr_info("%s, ++ lm3530_backlight_on  \n",__func__);
 		lm3530_hw_reset(client);
 
 		lm3530_write_reg(dev->client, 0xA0, 0x00);
@@ -155,7 +155,7 @@ static void lm3530_backlight_off(struct i2c_client *client)
 	struct lm3530_device *dev = i2c_get_clientdata(client);
 	int gpio = dev->gpio;
 
-	pr_info("%s, on: %d\n", __func__, backlight_status);
+	//pr_info("%s, on: %d\n", __func__, backlight_status);
 
 	mutex_lock(&backlight_mtx);
 	if (backlight_status == BL_OFF) {

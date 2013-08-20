@@ -87,13 +87,10 @@ static int __init display_kcal_setup(char *kcal)
 	int kcal_b = 0;
 
 	sscanf(kcal, "%d|%d|%d|%c", &kcal_r, &kcal_g, &kcal_b, &vaild_k );
-	pr_info("kcal is %d|%d|%d|%c\n", kcal_r, kcal_g, kcal_b, vaild_k);
-
-	if (vaild_k != 'K') {
-		pr_info("kcal not calibrated yet : %d\n", vaild_k);
-		kcal_r = kcal_g = kcal_b = 255;
-		pr_info("set to default : %d\n", kcal_r);
+	if (!kcal_r && !kcal_g && !kcal_b) {
+		vaild_k = 'K'; kcal_r = 208; kcal_g = 210; kcal_b = 212;
 	}
+	pr_info("kcal is %d|%d|%d|%c\n", kcal_r, kcal_g, kcal_b, vaild_k);
 
 	kcal_set_values(kcal_r, kcal_g, kcal_b);
 	return 1;

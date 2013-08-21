@@ -44,6 +44,7 @@
 #include <linux/param.h>
 #include <linux/bitops.h>
 #include <linux/termios.h>
+#include <asm/gpio.h>
 #include <mach/gpio.h>
 #include <mach/msm_serial_hs.h>
 
